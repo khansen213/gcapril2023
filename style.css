@@ -1,0 +1,117 @@
+@font-face {
+    font-family: 'HappyHalloween';
+    src: url(fonts/HappyHalloween.ttf);
+}
+
+/* Styles for the text field */
+
+* {
+    font-family: "HappyHalloween", Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+#pinInput {
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 8vh; /* Center vertically */
+    padding: .3em;
+    transform: translateY(-50%);
+    font-size: 24px; /* Adjust font size as needed */
+    text-align: center;
+    width: 60%; /* Adjust the width as needed for responsiveness */
+}
+
+/* Styles for the success message */
+.success-message {
+    padding: 20px;
+    border-radius: 99px;
+    text-align: center;
+    background-color: transparent; /* Initially transparent background */
+    border: none; /* Initially no border */
+    margin: 10px auto; /* Center horizontally */
+    width: 80%; /* Adjust the width as needed for responsiveness */
+    font-size: 20px; /* Adjust font size as needed */
+}
+
+button {
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+    margin-top: .7em;
+    padding: .4em;
+    width: 40%;
+    border: none;
+    border-radius: 9999px;
+    font-size: 24px;
+    background-color: #5a1786;
+    color: white;
+}
+
+button:hover {
+    transition: .5 ease-in;
+    background-color: #733a99;
+    box-shadow: 0 0 10px rgba(125, 63, 184, 0.5);
+}
+
+.main-title {
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 5.7em;
+    width: 100%;
+    font-size: 56px;
+    text-align: center;
+}
+
+p {
+    position: absolute;
+    color: red;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    margin-bottom: .4rem;
+}
+
+@media screen and (min-width: 740px) {
+    #pinInput {
+        display: block;
+        margin: 0 auto; /* Center horizontally */
+        margin-top: 8vh; /* Center vertically */
+        padding: .3em;
+        transform: translateY(-50%);
+        font-size: 24px; /* Adjust font size as needed */
+        text-align: center;
+        width: 30%; /* Adjust the width as needed for responsiveness */
+    }
+    
+    /* Styles for the success message */
+    .success-message {
+        padding: 20px;
+        border-radius: 99px;
+        text-align: center;
+        background-color: transparent; /* Initially transparent background */
+        border: none; /* Initially no border */
+        margin: 10px auto; /* Center horizontally */
+        width: 40%; /* Adjust the width as needed for responsiveness */
+        font-size: 20px; /* Adjust font size as needed */
+    }
+    
+    button {
+        display: block;
+        margin: 0 auto; /* Center horizontally */
+        margin-top: .7em;
+        padding: .4em;
+        width: 20%;
+        border: none;
+        border-radius: 9999px;
+        font-size: 24px;
+        background-color: #5a1786;
+        color: white;
+    }
+    
+    button:hover {
+        transition: .5 ease-in;
+        background-color: #733a99;
+        box-shadow: 0 0 10px rgba(125, 63, 184, 0.5);
+    }
+}

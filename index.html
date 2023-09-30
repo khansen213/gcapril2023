@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIN Verification</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+<style>
+    /* Define user colors */
+    .user-color-1 { background-color: #ff5733; }
+    .user-color-2 { background-color: #8adfa4; }
+    .user-color-3 { background-color: #5733ff; }
+    .user-color-4 { background-color: #ff33a1; }
+    .user-color-5 { background-color: #33a1ff; }
+    .user-color-6 { background-color: #a1ff33; }
+    .user-color-7 { background-color: #ff3399; }
+    .user-color-8 { background-color: #9933ff; }
+    .user-color-9 { background-color: #33ff99; }
+    .user-color-10 { background-color: #ff9933; }
+</style>
 <body>
+    <h1 class="main-title">You've Found a Page</h1>
     <input type="text" inputmode="numeric" id="pinInput" pattern="[0-9]+" maxlength="4" placeholder="Enter 4-digit PIN">
     <button id="checkPinButton">Submit</button>
 
@@ -14,18 +31,18 @@
         const checkPinButton = document.getElementById('checkPinButton');
         const successContainer = document.getElementById('successContainer');
 
-        // Define user information (PIN, name, color)
+        // Updated user information (PIN, name, color, and image)
         const users = [
-            { pin: '1234', name: 'Person 1', color: 'user-color-1' },
-            { pin: '5678', name: 'Person 2', color: 'user-color-2' },
-            { pin: '9876', name: 'Person 3', color: 'user-color-3' },
-            { pin: '4321', name: 'Person 4', color: 'user-color-4' },
-            { pin: '7890', name: 'Person 5', color: 'user-color-5' },
-            { pin: '2468', name: 'Person 6', color: 'user-color-6' },
-            { pin: '1357', name: 'Person 7', color: 'user-color-7' },
-            { pin: '6543', name: 'Person 8', color: 'user-color-8' },
-            { pin: '1122', name: 'Person 9', color: 'user-color-9' },
-            { pin: '3344', name: 'Person 10', color: 'user-color-10' },
+            { pin: '2971', name: 'Benedict Wraithsworth', color: 'user-color-1', img: '1.svg' },
+            { pin: '9785', name: 'Casper Nightwhisper', color: 'user-color-2', img: '2.svg' },
+            { pin: '3078', name: 'Edmund Phantomsbane', color: 'user-color-3', img: '3.svg'},
+            { pin: '4170', name: 'Evelyn Misthaven', color: 'user-color-4', img: '4.svg'},
+            { pin: '6472', name: 'Lucinda Shadowmere', color: 'user-color-5', img: '5.svg'},
+            { pin: '9904', name: 'Seraphina Ectoplasmia', color: 'user-color-6', img: '6.svg'},
+            { pin: '5088', name: 'Morticia Apparitionfield', color: 'user-color-7', img: '7.svg'},
+            { pin: '6370', name: 'Aurelia Ghostlight', color: 'user-color-8', img: '8.svg'},
+            { pin: '7725', name: 'Isabella Eeriecroft', color: 'user-color-9', img: '9.svg' },
+            { pin: '5230', name: 'Reginald Spectralton', color: 'user-color-10', img: '10.svg'},
         ];
 
         checkPinButton.addEventListener('click', () => {
@@ -37,14 +54,62 @@
             if (user) {
                 const successMessage = document.createElement('div');
                 successMessage.className = `success-message ${user.color}`;
-                successMessage.textContent = `${user.name} Wins!`;
+                
+                // Get the current date and time
+                const now = new Date();
+                const formattedDate = now.toLocaleString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                });
+                const formattedTime = now.toLocaleString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    fractionalSecondDigits: 2, // Add milliseconds
+                });
+                
+                // Set the content of the success message
+                successMessage.textContent = `${user.name} Wins! | ${formattedDate} ${formattedTime}`;
+                
+                successContainer.innerHTML = ''; // Clear previous content
                 successContainer.appendChild(successMessage);
+                
+                // Create a button to display the user's picture
+                const displayImageButton = document.createElement('button');
+                displayImageButton.textContent = 'Display User Picture';
+                displayImageButton.addEventListener('click', () => {
+                    // Create a new window or tab to display the image
+                    const imageWindow = window.open('', '', 'width=200,height=200');
+                    imageWindow.document.write(`<img src="activities/images/${user.img}" width="1000" height="1000">`);
+                });
+                successContainer.appendChild(displayImageButton);
+                
                 pinInput.value = '';
+                pinInput.style.backgroundColor = ''; // Reset background color
+                pinInput.style.border = ''; // Reset border
             } else {
                 alert('Invalid PIN. Please try again.');
                 pinInput.value = '';
             }
         });
+
+        // Change success message background color and border based on user's color
+        successContainer.addEventListener('input', () => {
+            const userPin = pinInput.value;
+            const user = users.find(u => u.pin === userPin);
+
+            if (user) {
+                successContainer.style.backgroundColor = `${user.color}80`; // 0.8 opacity
+                successContainer.style.border = `3px solid ${user.color}`;
+            } else {
+                successContainer.style.backgroundColor = ''; // Reset background color
+                successContainer.style.border = ''; // Reset border
+            }
+        });
     </script>
+
+    <p>*Please take a screenshot or picture with your phone when finished so I can see the timestamp.</p>
 </body>
 </html>
