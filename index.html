@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PIN Verification</title>
+</head>
+<body>
+    <input type="text" inputmode="numeric" id="pinInput" pattern="[0-9]+" maxlength="4" placeholder="Enter 4-digit PIN">
+    <button id="checkPinButton">Submit</button>
+
+    <div id="successContainer"></div>
+
+    <script>
+        const pinInput = document.getElementById('pinInput');
+        const checkPinButton = document.getElementById('checkPinButton');
+        const successContainer = document.getElementById('successContainer');
+
+        // Define user information (PIN, name, color)
+        const users = [
+            { pin: '1234', name: 'Person 1', color: 'user-color-1' },
+            { pin: '5678', name: 'Person 2', color: 'user-color-2' },
+            { pin: '9876', name: 'Person 3', color: 'user-color-3' },
+            { pin: '4321', name: 'Person 4', color: 'user-color-4' },
+            { pin: '7890', name: 'Person 5', color: 'user-color-5' },
+            { pin: '2468', name: 'Person 6', color: 'user-color-6' },
+            { pin: '1357', name: 'Person 7', color: 'user-color-7' },
+            { pin: '6543', name: 'Person 8', color: 'user-color-8' },
+            { pin: '1122', name: 'Person 9', color: 'user-color-9' },
+            { pin: '3344', name: 'Person 10', color: 'user-color-10' },
+        ];
+
+        checkPinButton.addEventListener('click', () => {
+            const userPin = pinInput.value;
+
+            // Find the user by PIN
+            const user = users.find(u => u.pin === userPin);
+
+            if (user) {
+                const successMessage = document.createElement('div');
+                successMessage.className = `success-message ${user.color}`;
+                successMessage.textContent = `${user.name} Wins!`;
+                successContainer.appendChild(successMessage);
+                pinInput.value = '';
+            } else {
+                alert('Invalid PIN. Please try again.');
+                pinInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
