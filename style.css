@@ -61,6 +61,17 @@ button:hover {
     text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+    .main-title {
+        display: block;
+        margin: 0 auto; /* Center horizontally */
+        margin-top: 2.1em;
+        width: 100%;
+        font-size: 56px;
+        text-align: center;
+    }
+
+}
 p {
     position: absolute;
     color: red;
